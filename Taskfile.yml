@@ -45,7 +45,13 @@ tasks:
     cmds:
       - uv run wakeword all {{.CLI_ARGS}}
 
+  docker:
+    desc: "Run the full pipeline in the published Docker image: task docker -- wakewords/<name>.yaml"
+    cmds:
+      - mkdir -p data output
+      - docker compose run --rm trainer wakeword all {{.CLI_ARGS}}
+
   image:
-    desc: Build the container image
+    desc: Build the Docker image locally instead of pulling it
     cmds:
       - docker compose build

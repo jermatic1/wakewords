@@ -2,6 +2,7 @@ services:
   trainer:
     image: ghcr.io/jermatic1/wakewords:latest
     build: .
+    pull_policy: missing
     user: "1000:1000"
     volumes:
       - ./data:/work/data

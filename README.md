@@ -64,12 +64,11 @@ micro_wake_word:
 
 ## Docker
 
-The image on GHCR runs the same CLI with `data/`, `output/`, and
+The published image runs the same CLI with `data/`, `output/`, and
 `wakewords/` mounted from the current directory:
 
 ```sh
-mkdir -p data output
-docker compose run --rm trainer wakeword all wakewords/hey_dolphin.yaml
+task docker -- wakewords/hey_dolphin.yaml
 ```
 
 ## Development
@@ -78,5 +77,5 @@ docker compose run --rm trainer wakeword all wakewords/hey_dolphin.yaml
 task check   # tests, lint, type checks
 task fmt     # format
 task lock    # refresh uv.lock after editing pyproject.toml
-task image   # build the Docker image
+task image   # build the Docker image locally instead of pulling it
 ```
