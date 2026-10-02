@@ -1,0 +1,51 @@
+version: "3"
+
+tasks:
+  setup:
+    desc: Fetch upstream submodules and install Python dependencies
+    cmds:
+      - git submodule update --init
+      - uv sync
+
+  test:
+    desc: Run tests
+    cmds:
+      - uv run pytest -q
+
+  lint:
+    desc: Check lint and formatting
+    cmds:
+      - uv run ruff check .
+      - uv run ruff format --check .
+
+  fmt:
+    desc: Format code
+    cmds:
+      - uv run ruff format .
+
+  typecheck:
+    desc: Check types
+    cmds:
+      - uv run basedpyright
+
+  check:
+    desc: Run tests, lint, formatting, and type checks
+    cmds:
+      - task: test
+      - task: lint
+      - task: typecheck
+
+  lock:
+    desc: Refresh uv.lock after changing pyproject.toml
+    cmds:
+      - uv lock
+
+  train:
+    desc: "Run the full pipeline: task train -- wakewords/<name>.yaml"
+    cmds:
+      - uv run wakeword all {{.CLI_ARGS}}
+
+  image:
+    desc: Build the container image
+    cmds:
+      - docker compose build

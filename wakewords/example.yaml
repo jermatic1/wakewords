@@ -1,0 +1,28 @@
+# Copy this file to wakewords/<name>.yaml and edit it.
+name: example
+phrase: "hey example"        # Phonetic spellings can produce better samples.
+piper:
+  samples: 3000
+  batch_size: 50
+  max_speakers: 800          # Later LibriTTS-R speakers have audio artifacts.
+real:
+  positive_weight: 3.0       # Sampling weight of real recordings; synthetic positives use 2.0.
+  negative_weight: 1.0
+augment:
+  min_snr_db: -5
+  max_snr_db: 10
+train:
+  steps: 10000
+  batch_size: 128
+  negative_class_weight: 20
+  learning_rate: 0.001
+  eval_step_interval: 500
+  pointwise_filters: "64,64,64,64"
+  stride: 3
+manifest:
+  author: ""
+  website: ""
+  probability_cutoff: 0.97
+  sliding_window_size: 5
+  tensor_arena_size: 22860   # Raise if the model fails to load on the device.
+  minimum_esphome_version: "2024.7"

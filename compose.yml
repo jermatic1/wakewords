@@ -1,0 +1,9 @@
+services:
+  trainer:
+    image: ghcr.io/jermatic1/wakewords:latest
+    build: .
+    user: "1000:1000"
+    volumes:
+      - ./data:/work/data
+      - ./output:/work/output
+      - ./wakewords:/work/wakewords

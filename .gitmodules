@@ -1,0 +1,6 @@
+[submodule "external/micro-wake-word"]
+	path = external/micro-wake-word
+	url = https://github.com/OHF-Voice/micro-wake-word
+[submodule "external/piper-sample-generator"]
+	path = external/piper-sample-generator
+	url = https://github.com/rhasspy/piper-sample-generator
